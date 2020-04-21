@@ -6,12 +6,12 @@ struct Beacon {
 }
 
 #[derive(Debug)]
-struct Point {
+struct Location {
     x: f32,
     y: f32,
 }
 
-fn calc(b: [Beacon; 3]) -> Point {
+fn calc(b: [Beacon; 3]) -> Location {
     let k: f32 = ((b[0].x).powi(2) + (b[0].y).powi(2)
         - (b[1].x).powi(2)
         - (b[1].y).powi(2)
@@ -37,7 +37,7 @@ fn calc(b: [Beacon; 3]) -> Point {
             + (b[1].d).powi(2))
             / (2.0 * (b[0].y - b[1].y));
 
-    Point { x, y }
+    Location { x, y }
 }
 
 fn main() {
@@ -59,6 +59,6 @@ fn main() {
         },
     ];
 
-    let point: Point = calc(beacons);
-    println!("point --- {:#?}", point);
+    let location: Location = calc(beacons);
+    println!("location --- {:#?}", location);
 }
