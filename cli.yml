@@ -1,0 +1,9 @@
+name: trilateration-rs
+version: "1.0"
+author: Calvin C. <calvin.cieslak@gmail.com>
+about: Simple implementation of trilateration
+args:
+    - INPUT:
+        help: Sets the input file to use
+        required: true
+        index: 1
