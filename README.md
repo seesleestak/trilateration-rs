@@ -14,6 +14,12 @@ ARGS:
     <INPUT>    Sets the input file to use
 ```
 
+## Install
+
+```bash
+cargo install --path ./
+```
+
 ## Example
 
 ```bash
