@@ -1,4 +1,14 @@
-#[derive(Debug)]
+use serde::Deserialize;
+use std::error::Error;
+use std::fs::File;
+use std::io::BufReader;
+use std::path::Path;
+
+#[macro_use]
+extern crate clap;
+use clap::App;
+
+#[derive(Deserialize, Debug)]
 struct Beacon {
     x: f32,
     y: f32,
@@ -9,6 +19,13 @@ struct Beacon {
 struct Location {
     x: f32,
     y: f32,
+}
+
+fn read_beacons_from_file<P: AsRef<Path>>(path: P) -> Result<[Beacon; 3], Box<dyn Error>> {
+    let file = File::open(path)?;
+    let reader = BufReader::new(file);
+    let result = serde_json::from_reader(reader)?;
+    Ok(result)
 }
 
 fn calc(b: [Beacon; 3]) -> Location {
@@ -41,24 +58,11 @@ fn calc(b: [Beacon; 3]) -> Location {
 }
 
 fn main() {
-    let beacons: [Beacon; 3] = [
-        Beacon {
-            x: 2.0,
-            y: 4.0,
-            d: 5.7,
-        },
-        Beacon {
-            x: 5.5,
-            y: 13.0,
-            d: 6.8,
-        },
-        Beacon {
-            x: 11.5,
-            y: 2.0,
-            d: 6.4,
-        },
-    ];
+    let yaml = load_yaml!("../cli.yml");
+    let matches = App::from_yaml(yaml).get_matches();
+
+    let beacons = read_beacons_from_file(matches.value_of("INPUT").unwrap()).unwrap();
 
     let location: Location = calc(beacons);
-    println!("location --- {:#?}", location);
+    println!("{:#?}", location);
 }
