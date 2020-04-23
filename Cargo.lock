@@ -142,7 +142,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "trilateration-rs"
+name = "trilat"
 version = "0.1.0"
 dependencies = [
  "clap",

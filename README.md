@@ -4,7 +4,7 @@ A simple Rust implementation of trilateration. Inspired heavily by [node-trilate
 
 ```
 USAGE:
-    trilateration-rs <INPUT>
+    trilat <INPUT>
 
 FLAGS:
     -h, --help       Prints help information

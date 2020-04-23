@@ -1,5 +1,5 @@
 [package]
-name = "trilateration-rs"
+name = "trilat"
 version = "0.1.0"
 authors = ["Calvin Cieslak <calvin.cieslak@gmail.com>"]
 edition = "2018"
