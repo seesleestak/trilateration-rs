@@ -61,7 +61,9 @@ fn main() {
     let yaml = load_yaml!("../cli.yml");
     let matches = App::from_yaml(yaml).get_matches();
 
-    let beacons = read_beacons_from_file(matches.value_of("INPUT").unwrap()).unwrap();
+    let input_filename = matches.value_of("INPUT").unwrap();
+
+    let beacons = read_beacons_from_file(input_filename).unwrap();
 
     let location: Location = calc(beacons);
     println!("{:#?}", location);
