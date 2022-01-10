@@ -66,5 +66,7 @@ fn main() {
     let beacons = read_beacons_from_file(input_filename).unwrap();
 
     let location: Location = calc(beacons);
-    println!("{:#?}", location);
+
+    println!("x: {}", location.x);
+    println!("y: {}", location.y);
 }
